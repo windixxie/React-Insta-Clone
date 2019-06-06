@@ -1,8 +1,45 @@
+
 import React from 'react';
 import './CommentSection.css';
 import Comment from './Comment/Comment';
 import moment from 'moment';
+import styled from 'styled-components';
 
+
+const CommentsContainer = styled.div`
+  width: 97%;
+  margin: 0;
+  font-size: 1rem;
+`;
+
+const CommentsContainerTime = styled.p`
+  padding-left: 10px;
+  color: grey;
+  font-size: 1rem;
+`;
+
+const CommentInputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  height: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background: #FAFAFA;
+  border-right: .5px solid #D3D3D3;
+`;
+
+const CommentInput = styled.input`
+  background: none;
+  padding: 0;
+  margin: 0 auto;
+  border: none;
+  color: black;
+`;
+
+/////////////////////////////////////////////////////
 class Comments extends React.Component {
   constructor(props) {
     super(props)
@@ -26,42 +63,29 @@ class Comments extends React.Component {
     }
   }
 
-  // deleteComment = (id, index) => {
-  //   this.setState((prevState) => {
-  //   const newData = prevState.data;
-  //   newData[index].comments = newData[index].comments.filter(x => x.id !== id);
-  //     return {
-  //       data: newData,
-  //     };
-  //   }, () => {
-  //     localStorage.removeItem('data');
-  //   });
-  // }
-
   render() {
     const time = moment(this.props.time, "MMM Do YYYY, h:mm:ss a")
     const newTime= time.fromNow().toUpperCase();
     return(
-      <div className="comments_container">
+      <CommentsContainer>
         {this.state.comments.map((comment, index) =>(
         <Comment
          key={index}
          comment={comment} />
       ))}
-        <p className="time">{newTime}</p>
-        <div className="comment_input_container">
+        <CommentsContainerTime>{newTime}</CommentsContainerTime>
+        <CommentInputContainer>
           <form onSubmit={this.addNewComment}>
-            <input
-              className="comment_input"
+            <CommentInput
               type="text"
               onChange={this.commentHandleChange}
               value={this.state.comment}
-              placeholder="Add a comment..."/>
+              placeholder="Add a comment..." />
           </form>
 
           {/* add ellipses image here */}
-        </div>
-      </div>
+        </CommentInputContainer>
+      </CommentsContainer>
     )
   }
 }
