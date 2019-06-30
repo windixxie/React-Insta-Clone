@@ -1,5 +1,35 @@
 import React from 'react';
 import './Login.css';
+import styled from 'styled-components';
+
+
+const LoginContainer = styled.div`
+  width: 400px;
+  height: 600px;
+  padding-top: 120px;
+  text-align: center;
+  margin: auto;
+  border: 1px solid black;
+`;
+
+const LoginLabel = styled.div`
+  font-weight: bold;
+  line-height: 50px;
+`;
+
+const LoginInput = styled.input`
+  width: 200px;
+`;
+
+const LoginSubmit = styled.button`
+  font-size: 1rem;
+  border: 1px solid black;
+  margin-top: 10px;
+`;
+
+
+//
+//////////////////////////////////////////////
 
 class Login extends React.Component{
   constructor(props){
@@ -22,13 +52,13 @@ class Login extends React.Component{
 
   render(){
     return(
-      <div className="login-container">
+      <LoginContainer>
         <h1 className="login-title"> Instagram </h1>
         <form>
-          <div className="login-label">
+          <LoginLabel>
             <label> Username: </label><br />
-          </div>
-          <input
+          </LoginLabel>
+          <LoginInput
             className="login-input"
             type="text"
             name="username"
@@ -37,18 +67,18 @@ class Login extends React.Component{
           <div className="login-label">
           <label> Password: </label><br />
           </div>
-          <input
+          <LoginInput
             className="login-input"
             type="password"
             name="password"
             value={this.state.password}
             onChange={this.handleInputChange} /><br />
-          <button
+          <LoginSubmit
             className="login-submit"
             type="subimt"
-            onClick={this.handleLoginSubmit}> Submit </button>
+            onClick={this.handleLoginSubmit}> Submit </LoginSubmit>
         </form>
-      </div>
+      </LoginContainer>
     )
   }
 }
